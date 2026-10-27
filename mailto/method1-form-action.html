@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Method 1: Form Action Mailto | Sample Store</title>
+  <meta name="description" content="Contact Sample Store with a question about your order.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <p class="site-name">Sample Store</p>
+
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Contact Us</h1>
+    <p class="intro">
+      Have a question about an order or a product? Fill in the form and we will reply by email.
+    </p>
+
+    <div class="page-layout">
+      <form class="contact-form" action="mailto:hello@examplewebsite.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="full-name">Full name <span class="required">(required)</span></label>
+          <input type="text" id="full-name" name="full_name" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address <span class="required">(required)</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="topic">Topic <span class="required">(required)</span></label>
+          <select id="topic" name="topic" required>
+            <option value="">Choose a topic</option>
+            <option value="order">A question about an order</option>
+            <option value="product">A question about a product</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message <span class="required">(required)</span></label>
+          <p id="message-hint" class="hint">Please do not include passwords or payment details.</p>
+          <textarea id="message" name="message" rows="6" required aria-describedby="message-hint"></textarea>
+        </div>
+
+        <button class="button" type="submit">Send message</button>
+      </form>
+
+      <aside class="contact-info">
+        <h2>Other ways to reach us</h2>
+        <address>
+          Email: <a href="mailto:hello@examplewebsite.com">hello@examplewebsite.com</a><br>
+          Phone: 0900 000 0000<br>
+          Hours: Monday to Friday, 9:00 AM to 5:00 PM
+        </address>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <ul class="footer-links">
+      <li><a href="about.html">About us</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="privacy.html">Privacy policy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+    </ul>
+    <p>&copy; Sample Store. All rights reserved.</p>
+  </footer>
+</body>
+</html>

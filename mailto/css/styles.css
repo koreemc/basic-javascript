@@ -1,0 +1,310 @@
+/*
+  ============================================================
+  MODULE 5: styles.css for the Contact Page
+  MMS 142: Internet Technologies and Web Development
+  ============================================================
+  A CSS rule has three parts:
+      selector { property: value; }
+  Example:   h1 { color: #222222; }
+  Comments in CSS start with slash star and end with star slash.
+
+  This file is written "mobile first": the base styles are for
+  phones, and a media query near the end adds changes for wider screens.
+*/
+
+
+/* ------------------------------------------------------------
+   1. VARIABLES
+   Variables store a value once so you can reuse it everywhere.
+   Change a color here and the whole page updates.
+   Contrast ratios are against white (WCAG needs 4.5:1 for text).
+   ------------------------------------------------------------ */
+:root {
+  --primary: #7B1113;      /* brand maroon, contrast 10.9:1 on white */
+  --primary-dark: #5A0C0E; /* darker maroon for hover */
+  --text: #222222;         /* main text, contrast 15.9:1 on white */
+  --muted: #595959;        /* hints and small text, about 7:1 on white */
+  --background: #FFFFFF;
+  --surface: #F8EDED;      /* light panel color */
+  --border: #767676;       /* form borders, 4.5:1 so fields are easy to see */
+  --error: #B00020;
+  --radius: 0.5rem;
+}
+
+
+/* ------------------------------------------------------------
+   2. RESET AND BASE
+   ------------------------------------------------------------ */
+
+/* box-sizing makes width include padding and border, so sizes act as expected. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* The body sets the default font, size, color and spacing for the whole page. */
+body {
+  margin: 0;                         /* removes the browser's default gap */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;                   /* 1rem = the visitor's own text size (usually 16px) */
+  line-height: 1.6;                  /* space between lines makes reading easier */
+  color: var(--text);
+  background: var(--background);
+}
+
+h1, h2 {
+  line-height: 1.25;
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.375rem; }
+
+p { margin: 0 0 1rem; }
+
+/* Links: keep the underline so they do not rely on color alone. */
+a {
+  color: var(--primary);
+}
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* Focus style: shows keyboard users where they are. Never remove it without a replacement. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* On the dark header, a dark outline would disappear, so use white there. */
+.site-header a:focus-visible {
+  outline-color: #FFFFFF;
+}
+
+
+/* ------------------------------------------------------------
+   3. HEADER AND NAVIGATION
+   Flexbox lines up items in a row or column.
+   ------------------------------------------------------------ */
+.site-header {
+  display: flex;
+  flex-direction: column;            /* stacked on phones */
+  gap: 0.5rem;                       /* space between the children */
+  padding: 1rem;
+  background: var(--primary);
+  color: #FFFFFF;                    /* white on this maroon is 10.9:1 */
+}
+
+.site-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Remove the bullets and default spacing from the menu list. */
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;                   /* links move to a new line if there is no room */
+  gap: 0.25rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  display: inline-block;
+  padding: 0.5rem 0;                 /* makes the tap area taller (at least 24px) */
+  color: #FFFFFF;
+}
+
+/* The current page gets an underline so it stands out without color alone. */
+.nav-list a[aria-current="page"] {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+/* ------------------------------------------------------------
+   4. MAIN CONTENT
+   ------------------------------------------------------------ */
+main {
+  max-width: 64rem;                  /* keeps lines from getting too wide */
+  margin: 0 auto;                    /* auto left and right centers the block */
+  padding: 1.5rem 1rem;
+}
+
+.intro {
+  color: var(--muted);
+}
+
+/* Phones: form first, contact details below, with space between. */
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+
+/* ------------------------------------------------------------
+   5. THE FORM
+   ------------------------------------------------------------ */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;                    /* puts the label on its own line above the field */
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+/* The "(required)" word is smaller and not bold. */
+.required {
+  font-weight: normal;
+  color: var(--muted);
+}
+
+.hint {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Style all fields together by listing selectors with commas. */
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;                       /* fills the form width */
+  padding: 0.75rem;                  /* roomy fields are easier to tap */
+  font: inherit;                     /* uses the same font as the page */
+  color: var(--text);
+  background: #FFFFFF;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+}
+
+textarea {
+  resize: vertical;                  /* visitors can make it taller, not wider */
+}
+
+/* Show a red border only after the visitor has typed something wrong. */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: var(--error);
+}
+
+
+/* ------------------------------------------------------------
+   6. BUTTON
+   ------------------------------------------------------------ */
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font: inherit;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  cursor: pointer;                   /* shows the hand pointer */
+}
+
+/* Hover gives feedback when the mouse is over the button. */
+.button:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+
+/* ------------------------------------------------------------
+   7. CONTACT DETAILS (ASIDE)
+   ------------------------------------------------------------ */
+.contact-info {
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+
+address {
+  font-style: normal;                /* the browser makes address italic by default */
+}
+
+
+/* ------------------------------------------------------------
+   8. FOOTER
+   ------------------------------------------------------------ */
+.site-footer {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background: var(--surface);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;           /* centers the links in the row */
+  gap: 0.25rem 1.25rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links a {
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+
+
+/* ------------------------------------------------------------
+   9. LARGER SCREENS
+   A media query applies its rules only when the condition is true.
+   Here: when the screen is at least 48em wide (about 768px, a tablet).
+   em is used so it also works when visitors enlarge their text.
+   ------------------------------------------------------------ */
+@media (min-width: 48em) {
+
+  /* Put the store name and menu on one row. */
+  .site-header {
+    flex-direction: row;
+    justify-content: space-between;  /* name on the left, menu on the right */
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+
+  main {
+    padding: 2rem;
+  }
+
+  /* Form on the left, contact details on the right. */
+  .page-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .contact-form {
+    flex: 2;                         /* takes two parts of the space */
+  }
+
+  .contact-info {
+    flex: 1;                         /* takes one part */
+  }
+}
+
+
+/* ------------------------------------------------------------
+   10. REDUCED MOTION
+   Respects visitors who ask their device to limit animation.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
